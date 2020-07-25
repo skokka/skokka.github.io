@@ -1,0 +1,103 @@
+var CaptchaManager = (function(cm){
+    if(typeof cm !== 'undefined'){
+        return cm;
+    }
+    var widgets = {};
+    var site_key = '6LfWoxsTAAAAABGVn50YiJZfNmDDe-rD-59LAWh4';
+    var script_loaded = false ;
+    var script_loading = false;
+    var recaptcha_loaded = false;
+    var widgets_to_render = [];
+
+    // this must be global as required by recaptcha lib when loaded inside the iframe
+    window.captcha_manager_on_load = onLoad;
+
+
+    function queueRender(div_id){
+        if($.inArray(div_id, widgets_to_render) === -1){
+            widgets_to_render.push(div_id);
+            if(recaptcha_loaded){
+                renderAll();
+            }
+        }
+
+
+    }
+
+    function renderAll(){
+        for(var i=0; i < widgets_to_render.length; i++){
+            var div_id = widgets_to_render[i];
+            try{
+                widgets[div_id] = grecaptcha.render(div_id, {
+                    'sitekey': site_key
+                });
+            }catch(e){}
+
+
+        }
+        widgets_to_render = [];
+    }
+
+    function getResponse(widget_id){
+        if(widgets.hasOwnProperty(widget_id)){
+            return grecaptcha.getResponse(widgets[widget_id])
+        }
+        return ''
+    }
+
+    function reset(widget_id){
+        if(widgets.hasOwnProperty(widget_id)){
+            grecaptcha.reset(widgets[widget_id])
+        }
+    }
+
+    function onLoad(){
+        recaptcha_loaded = true;
+        renderAll();
+    }
+
+    function showLightboxIfUnsupported(){
+        var ua = navigator.userAgent.toLowerCase();
+        var match = ua.match(/android\s([0-9\.]*)/);
+        var android_version = match ? parseFloat(match[1]) : false;
+        var is_stock = ! ua.match(/chrome\/([\d.]+)/);
+        if(android_version && is_stock && android_version < 4.4){
+            utility.lightboxShowAjax('/fe/main.php?page=unsupported_captcha_ajax');
+        }
+    }
+
+    function loadScript(lang){
+        var src = "https://www.google.com/recaptcha/api.js?onload=captcha_manager_on_load&render=explicit&hl="+lang;
+        if(!script_loading && !script_loaded){
+            script_loading = true;
+            $.ajax({
+                url: src,
+                dataType: 'script',
+                async: true
+            }).done(function(){
+                script_loaded = true
+            }).always(function(){
+                script_loading = false;
+            });
+        }
+    }
+
+    function init(in_element){
+        var $in_element = in_element || $('body');
+        $in_element.find('.g-recaptcha').each(function(){
+            queueRender($(this).attr('id'));
+        });
+
+        showLightboxIfUnsupported();
+    }
+
+    return {
+        //queueRender:queueRender,
+        reset: reset,
+        getResponse: getResponse,
+        loadScript: loadScript,
+        init: init
+    };
+
+})(CaptchaManager);
+

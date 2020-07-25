@@ -1,0 +1,699 @@
+//compatibilita console log IE
+if (typeof console == "undefined") {
+    this.console = {log: function() {}};
+}
+var clubCities;
+var selected_city_club;
+$(document).ready(function(){
+    var dummyClubCities = [];
+    $("select[name=category], select[name=category-2]").on("change", function(){
+        if($(this).attr('name')=='category'){
+            $("select[name=category-2]").val($(this).val()).attr('selected','selected');
+        }else {
+            $("select[name=category]").val($(this).val()).attr('selected', 'selected');
+        }
+
+        if (clubCities && (clubCities.length>0)) {
+            if (($(this).val()=="clubs") || ($(this).val()=="clubes") || ($(this).val()=="club")){
+                var custom_selected=false;
+                $("select[name=city] option, select[name=city-2] option").filter(function(){
+                    var self = this;
+                    if (clubCities.some(function(e) {
+                        return e['vhost']===$(self).val()
+                    })) {
+                        $(self).show();
+                    } else {
+                        if($(self).val()!='all')
+                            $(self).hide();
+                    }
+                });
+
+                $("select[name=region] option").filter(function(){
+                    var self = this;
+                    if (clubCities.some(function(e) { return e['codice_regione']===$(self).val()})){
+                        $(self).show();
+                    } else {
+                        if($(self).val()!='all-regions')
+                            $(self).hide();
+                    }
+                });
+                $("select[name=city], select[name=city-2], select[name=region]").prop('selectedIndex',0);
+            } else {
+                $("select[name=city] option, select[name=city-2] option, select[name=region] option").each(function(){
+                    $(this).show();
+                });
+
+            }
+            $("#region-ricerca-ver3, #region-ricerca-ver2").trigger("change");
+        }
+        // city_change();
+    });
+
+    $("select[name=category], select[name=category-2]").change();
+
+    $("#cover").hide();
+    $("body").removeClass("overflow-hidden");
+
+    $("form.doublesubmitprevent").on('submit', function(e){
+        if($(this).data('submitted') === true) {
+          // Previously submitted - don't submit again
+          e.preventDefault();
+        } else {
+          // Mark it so that the next submit can be ignored
+          $(this).data('submitted', true);
+        }
+    });
+
+    $("#form-search").on('submit',function(){
+        search();
+        return false;
+    });
+    $("#form-search-2").on('submit',function(){
+        search('mobile');
+        return false;
+    });
+
+    $("#localita-ricerca-ver2").on('change',city_change);
+    $("#localita-ricerca-ver3").on('change',city_change);
+    $("#localita-ricerca-2").on('change',city_change);
+    function city_change(){
+        vhost=$(this).val();
+        city_elem=$(this);
+        var opts = districts[vhost];
+        if($(this).attr('id')=='localita-ricerca-ver3') district_elem = $('#district-ricerca-ver3');
+        else if($(this).attr('id')=='localita-ricerca-2') district_elem = $('#district-ricerca-2');
+        else district_elem = $('#district-ricerca');
+
+        if($(this).attr('id')=='localita-ricerca-ver3') region_elem = $('#region-ricerca-ver3');
+        else if($(this).attr('id')=='localita-ricerca-ver2') region_elem = $('#region-ricerca-ver2');
+        else region_elem = $('#region-ricerca-2');
+
+        if($('#categorie-ricerca').find(':selected').data('club')==1)
+            my_regions=club_regions;
+        else
+            my_regions=regions;
+
+        if(region_elem){
+            region='all-regions';
+            $.each(my_regions['all-regions'], function(i, d) {
+                if(d.code==vhost && d.region) {
+                    region=d.region;
+                }
+            });
+            if(list_state && my_regions[region].length>1) {
+                $.each(my_regions, function (key, value) {
+                    if (key == vhost && key!='all') {
+                        region = key;
+                    }
+                });
+            }
+            region_elem.val(region).attr('selected', 'selected');
+
+
+            city_elem.empty();
+            if(region=='all-regions'){
+                city_elem.append('<option value="all" ' + ('all'==vhost ? 'selected="selected"' : '') + '>'+my_regions['all']+'</option>');
+                $.each(my_regions[region], function (i, d) {
+                    city_elem.append('<option value="' + d.code + '" ' + (d.code==vhost ? 'selected="selected"' : '') + '>' + d.desc + '</option>');
+                });
+            }
+            else{
+                var optgroup = $('<optgroup/>');
+                optgroup.attr('label',my_regions['main_cities_of']+' '+regions_desc[region]);
+                if(list_state && my_regions[region].length>1) {
+                    var option = $("<option></option>");
+                    option.val(region);
+                    option.text(my_regions['all_cities_of'] + ' ' + regions_desc[region]);
+                    optgroup.append(option);
+                }
+                $.each(my_regions[region], function (i, d) {
+                    var option = $("<option></option>");
+                    option.val(d.code);
+                    option.text(d.desc);
+                    optgroup.append(option);
+                });
+                city_elem.append(optgroup);
+
+
+                var optgroup = $('<optgroup/>');
+                optgroup.attr('label',my_regions['all_cities']);
+                $.each(my_regions['all-regions'], function (i, d) {
+                    if (d.region != region) {
+                        var option = $("<option></option>");
+                        option.val(d.code);
+                        option.text(d.desc);
+                        optgroup.append(option);
+                    }
+                });
+                city_elem.append(optgroup);
+                city_elem.val(vhost).attr('selected', 'selected');
+                selected_city_club=vhost;
+            }
+
+        }
+
+        district_elem.empty();
+        district_elem.append('<option value="">'+districts['all-districts']+'</option>');
+        if(opts){
+            $.each(opts, function(i, d) {
+                district_elem.append('<option value="' + d.codicelink + '">' + d.descrizione + '</option>');
+            });
+            district_elem.prop('disabled', false)
+            district_elem.removeClass("disabled_select");
+        }else{
+            district_elem.prop('disabled', 'disabled');
+            district_elem.addClass("disabled_select");
+        }
+
+        // $("select[name=category], select[name=category-2]").change();
+
+    }
+    $("#region-ricerca-ver2").on('change',region_change);
+    $("#region-ricerca-ver3").on('change',region_change);
+    $("#region-ricerca-2").on('change',region_change);
+    // $("#region-ricerca-ver2").on('focusout',region_change);
+    // $("#region-ricerca-ver3").on('focusout',region_change);
+    // $("#region-ricerca-2").on('focusout',region_change);
+
+    function region_change(){
+        region = $(this).val();
+
+        if($('#categorie-ricerca').find(':selected').data('club')==1)
+            my_regions=club_regions;
+        else
+            my_regions=regions;
+
+        if($(this).attr('id')=='region-ricerca-ver3') city_elem = $('#localita-ricerca-ver3');
+        else if($(this).attr('id')=='region-ricerca-2') city_elem = $('#localita-ricerca-2');
+        else city_elem = $('#localita-ricerca-ver2');
+        city_elem.empty();
+        if(region=='all-regions')city_elem.append('<option value="all">'+my_regions['all']+'</option>');
+        else{
+            city_elem.append('<option value="" disabled>'+ my_regions['main_cities_of']+' '+regions_desc[region]+'</option>');
+            if(list_state && my_regions[region].length>1) city_elem.append('<option value="'+region+'" selected="selected">'+ my_regions['all_cities_of']+' '+regions_desc[region]+'</option>');
+        }
+        if(my_regions[region]){
+            $.each(my_regions[region], function(i, d) {
+                if(list_state && my_regions[region].length>1) city_elem.append('<option value="' + d['code'] + '">' + d['desc'] + '</option>');
+                else city_elem.append('<option value="' + d['code'] + '" '+ (d['default']? 'selected="selected"':'') +'>' + d['desc'] + '</option>');
+            });
+
+            if(region!='all-regions'){
+                city_elem.append('<option value="" disabled></option>');
+                city_elem.append('<option value="" disabled>'+my_regions['all_cities']+'</option>');
+                $.each(my_regions['all-regions'], function(i, d) {
+                    if(d.region!=region)
+                        city_elem.append('<option value="' + d.code + '">' + d.desc + '</option>');
+                });
+            }
+            city_elem.trigger('change');
+        }
+        // $("select[name=category], select[name=category-2]").change();
+        // city_change();
+
+    }
+    $('input[name=testo-ricerca]').on('input propertychange',function(){
+        var str = $(this).val().replace(/[^a-z0-9\u00C0-\u017F ]/gi, '');
+        $(this).val(str);
+    });
+
+    $('select[name=seleziona-citta]').on('change',function(){
+        //alert('change');
+        window.location.href=$(this).val();
+    });
+
+    $('#citta-ins').on('change',function(){
+        $.ajax({
+            type: "GET",
+            url: "/fe/main.php",
+            data: { 'id_l': $('#citta-ins').val(),page:'get_quartieri_ajax'},
+            success: function(data){
+                var opts = $.parseJSON(data);
+                $('#q-ins').empty();
+                if(opts){
+                    $('#q-div').show();
+                    $.each(opts, function(i, d) {
+                        $('#q-ins').append('<option value="' + (d.id!='-'?d.id:'') + '">' + d.desc + '</option>');
+                    });
+                }else{
+                    $('#q-div').hide();
+                }
+            }
+        });
+        aster_pos=$("#q-label").text().trim().indexOf("* ");
+        if(district_requested($(this).val())){
+            if(aster_pos<0) $("#q-label").text('* '+$("#q-label").text().trim());
+        }else{
+            if(aster_pos>=0) $("#q-label").text($("#q-label").text().trim().substr(2));
+        }
+        $('#q-ins').removeClass('input-error');
+        $('#q-ins').closest('div[class^="col-ins"]').removeClass('compilato no-compilato');
+    });
+
+    function perform_call_counter(id, href){
+        // window.location.href = href;
+        window.open(href);
+        try{
+            $.post('/fe/main.php?page=calls_counter_ajax',{id:id});
+        }catch(e){
+            console.log(e);
+        }
+    }
+
+    $('.calls-counter').on('click', function(event){
+        event.preventDefault();
+        var $call_link = $(this);
+        var id = $call_link.data('idpub');
+        perform_call_counter(id, $call_link.attr('href'));
+    });
+
+    $('.show_number').on('click', function(event){
+        event.preventDefault();
+        var $call_link = $(this);
+        var id = $call_link.data('idpub');
+        if (!$call_link.data('phoneready')) {
+            $.ajax({
+                url:'/fe/main.php?page=get_full_number',
+                data: {id: id}
+            })
+                .done(function(value){
+                    if ($call_link.hasClass("ora")) {
+                        $call_link.children('span:nth-child(1)').html($call_link.data('text')+" "+value);
+                    } else {
+                        $call_link.children('span:nth-child(1)').html($call_link.data('text')+""+value);
+                    }
+                    //$call_link.children('span').html($call_link.data('text')+" "+value);
+                    $call_link.attr('data-phoneready', true);
+                    if ($call_link.data('mobile')) {
+                        $call_link.attr("href", "tel:"+value);
+                        perform_call_counter(id, $call_link.attr('href'));
+                    }
+                })
+                .fail(function(jqXHR, textStatus) {
+                    console.log("Request failed: " + textStatus);
+                });
+
+        } else {
+            perform_call_counter(id, $call_link.attr('href'));
+        }
+    });
+
+    $('.show_number_whatsapp').on('click', function(){
+        var $call_link = $(this);
+        var id = $call_link.data('idpub');
+        if (!$call_link.data('phoneready')) {
+            $.ajax({
+                url:'/fe/main.php?page=get_full_number',
+                data: {id: id}
+            })
+                .done(function(value){
+                    $call_link.attr('data-phoneready', true);
+                    if (!$call_link.data('prefix')) {
+                        var temp = value;
+                        $call_link.attr("href", "https://api.whatsapp.com/send?phone="+$call_link.data('prefix')+(temp).slice(2,temp.length) + "&text=" + $call_link.data('message'));
+                    } else {
+                        $call_link.attr("href", "https://api.whatsapp.com/send?phone="+$call_link.data('prefix')+value + "&text=" + $call_link.data('message'));
+
+                    }
+                    $call_link.get(0).click();
+                })
+                .fail(function(jqXHR, textStatus) {
+                    console.log("Request failed: " + textStatus);
+                });
+
+        }
+    })
+
+   /* $("#button-whatsapp").on('click',function() {
+        $('#modal-whatsapp').show();
+    })
+    $("#close-whatsapp").on('click',function() {
+        $('#modal-whatsapp').hide();
+    })
+    $(this).on('click', function(e) {
+        if(e.target.id=='modal-whatsapp') $('#modal-whatsapp').hide();
+    })
+    console.log($("#button-whatsapp"));*/
+
+
+        $("#info-header-m").on("load", fixPaddingContenitore);
+        $(window).on("resize", fixPaddingContenitore);
+
+});
+
+function fixPaddingContenitore() {
+    padding_top = $("#info-header-m").height() + 92;
+    top_dif = $("#info-header-m").height() + 82;
+    if ($( document ).width()<754){
+        $(".pg-contenitore.alert-fucsia").css('padding-top', padding_top + 'px');
+        $(".alert-fucsia .menu-mobile ").css('top', top_dif + 'px');
+    }else {
+        $(".pg-contenitore.alert-fucsia").css('padding-top', '0');
+        $(".alert-fucsia .menu-mobile ").css('top',  '82px');
+    }
+}
+
+var italian_swiss_cities= ['lugano','bellinzona','locarno','chiasso','cadenazzo'];
+var french_swiss_cities= ['geneve','lausanne','neuchatel'];
+var general_swiss_categories_mapping=[];
+general_swiss_categories_mapping['escorts'] = 'womenseekmen';
+general_swiss_categories_mapping['kontakte'] = 'seekmeetings';
+general_swiss_categories_mapping["callboys"] = "menseekwomen";
+general_swiss_categories_mapping["trans"] = "trans";
+general_swiss_categories_mapping['incontri'] = 'seekmeetings';
+general_swiss_categories_mapping["escort-uomini"] = "menseekwomen";
+general_swiss_categories_mapping['rencontres'] = 'seekmeetings';
+general_swiss_categories_mapping["escort-boys"] = "menseekwomen";
+
+
+var italian_swiss_categories_mapping=[];
+italian_swiss_categories_mapping['seekmeetings'] = 'incontri';
+italian_swiss_categories_mapping['womenseekmen'] = 'escorts';
+italian_swiss_categories_mapping["menseekwomen"] = "escort-uomini";
+italian_swiss_categories_mapping["trans"] = "trans";
+var german_swiss_categories_mapping=[];
+german_swiss_categories_mapping['seekmeetings'] = 'kontakte';
+german_swiss_categories_mapping['womenseekmen'] = 'escorts';
+german_swiss_categories_mapping["menseekwomen"] = "callboys";
+german_swiss_categories_mapping["trans"] = "trans";
+var french_swiss_categories_mapping=[];
+french_swiss_categories_mapping['seekmeetings'] = 'rencontres';
+french_swiss_categories_mapping['womenseekmen'] = 'escorts';
+french_swiss_categories_mapping["menseekwomen"] = "escort-boys";
+french_swiss_categories_mapping["trans"] = "trans";
+
+
+function openInNewTab() {
+    return window.location.href.indexOf("end-user") > -1;
+}
+function search(type){
+    if(type=='mobile'){
+        category_elem = $("select[name=category-2]");
+        city_elem = $("select[name=city-2]");
+        searchKey_elem = $("input[name=searchkey-2]");
+        district_elem = $("select[name=district-2]");
+    }else{
+        category_elem = $("select[name=category]");
+        city_elem = $("select[name=city]");
+        searchKey_elem = $("input[name=searchkey]");
+        district_elem = $("select[name=district]");
+    }
+
+    category = category_elem.val();
+    city = city_elem.val();
+    searchKey = searchKey_elem.val().toLowerCase();
+    district = district_elem.val();
+
+    isClubsCategory = $('option:selected', category_elem).attr('club');
+
+    var searchUrl=href_cities[city];
+
+    searchUrl = searchUrl+((!isClubsCategory && district)?district+'/':'');
+    if(searchKey.length) searchUrl = searchUrl+((struct_site=='NewSkk' || struct_cities[city])?'?q=':'?')+searchKey;
+
+    var patt1 = new RegExp("/[-a-z]+/");
+    var patt2 = new RegExp("[-a-z]+");
+    resultato = patt2.exec(patt1.exec(searchUrl)).toString();
+
+    if(struct_site=='NewSkk') {
+        if(general_swiss_categories_mapping[category]){
+            catcode=general_swiss_categories_mapping[category];
+            console.log(category,catcode,resultato);
+            if (italian_swiss_cities.indexOf(resultato) >= 0) {
+                if (italian_swiss_categories_mapping[catcode]) {
+                    category = italian_swiss_categories_mapping[catcode];
+                }
+            } else if (french_swiss_cities.indexOf(resultato) >= 0) {
+                if (french_swiss_categories_mapping[catcode]) {
+                    category = french_swiss_categories_mapping[catcode];
+                }
+            } else if (german_swiss_categories_mapping[catcode]) {
+                category = german_swiss_categories_mapping[catcode];
+            }
+        }
+
+    }
+    searchUrl=searchUrl.replace('#CAT#',category);
+    //console.log(searchUrl);
+    //return false;
+    if (openInNewTab()) {
+        window.open(searchUrl, '_blank');
+    } else {
+        window.location.href=searchUrl;
+    }
+}
+
+function doSearch(searchKey, searchCategory, localitaRicerca){
+    var searchUrl='';
+    if(struct_site=='NewSkk')searchUrl = localitaRicerca+(searchKey.length?'?q='+searchKey:'');
+    else searchUrl = localitaRicerca+(searchKey.length?'?'+searchKey:'');
+
+
+    var patt1 = new RegExp("/[-a-z]+/");
+    var patt2 = new RegExp("[-a-z]+");
+    resultato = patt2.exec(patt1.exec(searchUrl)).toString();
+
+    if(struct_site=='NewSkk') {
+        if (italian_swiss_cities.indexOf(resultato) >= 0) {
+            if (italian_swiss_categories_mapping[searchCategory]) {
+                searchCategory = italian_swiss_categories_mapping[searchCategory];
+            }
+        } else if (german_swiss_categories_mapping[searchCategory]) {
+            searchCategory = german_swiss_categories_mapping[searchCategory];
+        }
+    }
+
+    searchUrl=searchUrl.replace('#CAT#',searchCategory);
+    //console.log(searchUrl);
+    //return false;
+    if (openInNewTab()) {
+        window.open(searchUrl, '_blank');
+    } else {
+        window.location.href=searchUrl;
+    }
+
+}
+
+function siaccetto18() {
+    var parts = window.location.hostname.split('.');
+    var domain = '.'+parts[parts.length-2]+'.'+parts[parts.length-1];
+    var date = new Date();
+    date.setTime(date.getTime()+(24*60*60*1000));
+    var cookie = 'adult_cookie=1; expires='+date.toUTCString()+'; domain='+domain+'; path=/; ';
+    document.cookie = cookie;
+    utility.lightboxHide();
+}
+
+function scrollToElement(el){
+    try{
+        if(!el.length)
+            return;
+        window.scroll(0, parseInt(el.offset().top));
+    }catch(e){
+
+    }
+}
+
+function invia_amico(){
+    try{
+        var formData = $('form#invia_amico').serialize();
+        $('form#invia_amico input[type=submit]#invia').attr('disabled','disabled');
+
+        $.ajax({
+            url:'/fe/main.php?page=invia_amico_ajax',
+            type:'POST',
+            data:formData
+        }).done(function(){
+            utility.lightboxSuccess();
+        }).fail(function(xhr){
+            CaptchaManager.reset('captcha_invia_amico');
+            try{
+                var responseObject = $.parseJSON(xhr.responseText);
+                if(responseObject.hasOwnProperty('general')){ // se ce un errore di tipo generale, allora chiude il contenuto
+                    utility.lightboxFail()
+                }else{
+                    $('.lb-contenitore input[type=text], textarea, #g-recaptcha').removeClass('input-error');
+                    var hash=false;
+                    $.each(responseObject,function(i,e){
+                        if(hash===false){
+                            hash=$('#'+i+'-label').length?i+'-label':i; // se esiste il label,va li se no solo al id
+                            window.location.hash='';
+                            window.location.hash=hash;
+                        }
+                        if (i==="privacy-ins") {
+                            $('.lb-contenitore .'+i).addClass('input-error-cb');
+                        } else {
+                            $('.lb-contenitore .'+i).addClass('input-error');
+
+                        }
+                    })
+                }
+            }catch(e){ // se non riesce a parsare la risposta (errore php)
+                utility.lightboxFail();
+            }
+        }).always(function(){
+            $('form#invia_amico input[type=submit]#invia').removeAttr('disabled');
+        });
+        return false;
+    }catch(e){
+        utility.lightboxFail();
+        return false;
+    }
+}
+
+function rispondi_annuncio(){
+    try{
+        var formData=$('form#rispondi_annuncio').serialize();
+        $('form#rispondi_annuncio input[type=submit]#invia-annuncio').attr('disabled','disabled');
+        $.ajax({
+            url:'/fe/main.php?page=rispondi_annuncio_ajax',
+            type:'POST',
+            data:formData
+        }).done(function(){
+            utility.lightboxSuccess();
+        }).fail(function(xhr){
+            CaptchaManager.reset('captcha_rispondi_annuncio');
+            try{
+                var responseObject = $.parseJSON(xhr.responseText);
+                if(responseObject.hasOwnProperty('general')){ // se ce un errore di tipo generale, allora chiude il contenuto
+                    utility.lightboxFail()
+                }else{
+                    $('.lb-contenitore input[type=text], textarea, #g-recaptcha').removeClass('input-error');
+                    var hash=false;
+                    $.each(responseObject,function(i,e){
+                        if(hash===false){
+                            hash=$('#'+i+'-label').length?i+'-label':i;
+                            window.location.hash='';
+                            window.location.hash=hash;
+                        }
+                        console.log("Add inout error to #" + i);
+                        if (i==="privacy-ins") {
+                            $('.lb-contenitore .'+i).addClass('input-error-cb');
+                        } else {
+                            $('.lb-contenitore .'+i).addClass('input-error');
+
+                        }
+                    })
+                }
+            }catch(e){ // se non riesce a parsare la risposta (errore php)
+                utility.lightboxFail();
+            }
+        }).always(function(){
+            $('form#rispondi_annuncio input[type=submit]#invia-annuncio').removeAttr('disabled');
+        });
+        return false;
+    }catch(e){
+        utility.lightboxFail();
+        return false;
+    }
+}
+
+function doLogin(redirect){
+    try{
+        var formData = $('form#form-accedi').serialize();
+        $('#errore-accedi-general').addClass('hidden');
+        $('#errore-accedi').addClass('hidden');
+        $('#errore-accedi p').empty();
+        $('form#form-accedi').find('input[type=submit]').attr('disabled','disabled');
+        $.ajax({
+            url:'/fe/main.php?page=login_ajax',
+            type:'POST',
+            data:formData
+        }).done(function(){
+            window.location.href=redirect;
+        }).fail(function(xhr){
+            CaptchaManager.reset('captcha_login_ajax');
+            $('form#form-accedi #g-recaptcha').removeClass('input-error');
+
+            try {
+                var responseObject = $.parseJSON(xhr.responseText)
+            }catch(e){ // se ce un errore di parsing vuol dire che php ha crashato
+                $('#errore-accedi-general').removeClass('hidden');
+                return;
+            }
+            var hash=false;
+            $.each(responseObject,function(i,e){
+                if(hash===false){
+                    hash=$('#'+i+'-label').length?i+'-label':i;
+                    window.location.hash='';
+                    window.location.hash=hash;
+                }
+                if (i==='g-recaptcha') {
+                    $('.lb-contenitore .'+i + ' iframe').addClass('input-error');
+                } else {
+                    $('.lb-contenitore #'+i).addClass('input-error');
+                }
+                $('#errore-accedi').removeClass('hidden');
+                $('#errore-accedi p').append(e+(e?'<br>':''));
+            });
+        }).always(function(){
+            $('form#form-accedi').find('input[type=submit]').removeAttr('disabled');
+        });
+        return false;
+    }catch(e){
+        $('#errore-accedi-general').removeClass('hidden');
+        return false;
+    }
+}
+
+function doLogout(){
+    $.get('/fe/main.php?page=logout_ajax',function(){
+        window.location.reload();
+    });
+}
+
+function dontShowMsgPromoPremium(){
+    $.get('/fe/main.php?page=account_nomoremsgpremium_ajax',function(){
+        console.log('No more premium message');
+    });
+}
+
+function dontShowMsgPromoBlackWeek(){
+    $.get('/fe/main.php?page=account_nomoremsgblackweek_ajax',function(){
+        console.log('No more black week message');
+    });
+}
+function dontShowMsgPromoNewYear(){
+    $.get('/fe/main.php?page=account_nomoremsgnewyear_ajax',function(){
+        console.log('No more new year message');
+    });
+}
+function dontShowMsgPromo(msg_code){
+    $.get('/fe/main.php?page=account_nomoremsgpromo_ajax&msg_code='+msg_code,function(){
+        console.log('No more promo '+msg_code+' message');
+    });
+}
+function dontShowMsgPromoVideoChiama(domain){
+    exdays=60;
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = "no_more_promo_vc=1;" + expires + ";path=/;domain=."+domain;
+    console.log('Set cookie: no_more_promo_vc=1;' + expires + ';path=/;domain=.'+domain);
+}
+
+function dontShowPushPremium(domain){
+    exdays=60;
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = "no_more_push_premium=1;" + expires + ";path=/;domain=."+domain;
+    console.log('Set cookie: no_more_push_premium=1;' + expires + ';path=/;domain=.'+domain);
+}
+function closeAlertPromo(domain){
+    $('#info-header').addClass('hidden');
+    $('#info-header-m').addClass('hidden');
+    $(".pg-contenitore.alert-fucsia").css('padding-top', '');
+    $(".alert-fucsia .menu-mobile ").css('top',  '');
+    $('.pg-contenitore').removeClass('alert-fucsia');
+    exdays=60;
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = "no_more_promo_alert=1;" + expires + ";path=/;domain=."+domain;
+}
+
+
+
+
+

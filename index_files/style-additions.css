@@ -1,0 +1,820 @@
+.nazioni-mobile  {
+    background:url(../img/flags_sprite_small.png) no-repeat;
+}
+.nazioni-mobile-arg{
+    background-position: 0 0;
+}
+.nazioni-mobile-bel{
+    background-position: 0 -45px;
+}
+.nazioni-mobile-bra{
+    background-position: 0 -90px;
+}
+.nazioni-mobile-ita {
+    background-position: 0 -135px;
+}
+.nazioni-mobile-mxi{
+    background-position: 0 -180px;
+}
+.nazioni-mobile-esp{
+    background-position: 0 -225px;
+}
+.nazioni-mobile-chi{
+    background-position: 0 -270px;
+}
+.nazioni-mobile-col{
+    background-position: 0 -315px;
+}
+.nazioni-mobile-per{
+    background-position: 0 -360px;
+}
+.nazioni-mobile-sgp{
+    background-position: 0 -405px;
+}
+.nazioni-mobile-aus{
+    background-position: 0 -450px;
+}
+.nazioni-mobile-cle{
+    background-position: 0 -495px;
+}
+.nazioni-mobile-vzn{
+    background-position: 0 -540px;
+}
+.nazioni-mobile-ind{
+    background-position: 0 -630px;
+}
+.nazioni-mobile-deu{
+    background-position: 0 -675px;
+}
+.nazioni-mobile-gtm{
+    background-position: 0 -945px;
+}
+.nazioni-mobile-pan{
+    background-position: 0 -1305px;
+}
+.nazioni-mobile-cri{
+    background-position: 0 -810px;
+}
+.nazioni-mobile-dom{
+    background-position: 0 -900px;
+}
+.nazioni-mobile-uyy{
+    background-position: 0 -855px;
+}
+.nazioni-mobile-ecu{
+    background-position: 0 -1350px;
+}
+.nazioni-mobile-bol{
+    background-position: 0 -1485px
+}
+.nazioni-mobile-pyy{
+    background-position: 0 -1620px
+}
+.nazioni-mobile-nld{
+    background-position:  0 -1710px;
+}
+.nazioni-mobile-ukk{
+    background-position:  0 -992px;
+}
+.nazioni-mobile-nzl{
+    background-position:  0 -1755px;
+}
+
+.nazioni-mobile-irl{
+    background-position:  0 -1797px;
+}
+
+
+/*
+LOGO
+*/
+
+/*layout logo e menu mobile */
+
+
+.header-fixed .logo-header{
+    display:block;
+    padding:35px 0 0;
+    margin:20px 0 0 5%;
+    font-size:15px;
+    color:#313233;
+    font-weight:bold;
+}
+
+/* tolgo il margine del logo*/
+@media only screen and (min-width: 480px){
+    .header-fixed .logo-header{
+        margin-left:0;
+    }
+}
+
+.logo-skokka{
+    background:url(../img/logo/logo_big_skokka.com.png) no-repeat top left;
+    background-size:137px 27px;
+
+    background:url(../img/logo/logo_skokka.com.png) no-repeat top left\9; /* IE FIX */
+    min-width: 170px;
+
+}
+
+.logo-bakecaincontri{
+    background:url(../img/logo/logo_big_bakecaincontrii.com.png) no-repeat top left;
+    background-size:261px 29px;
+
+    background: url(../img/logo/logo_bakecaincontrii.com.png) no-repeat top left\9; /* IE FIX */
+    min-width: 261px;
+}
+
+/* per dispositivi piccoli && quando bakecaincontri, metto logo piccolo*/
+@media only screen and (max-width : 768px) {
+    .logo-bakecaincontri{
+        padding-top: 25px !important;
+        background: url(../img/logo/logo_big_bakecaincontrii.com.png) no-repeat top left;
+        background-size:178px 20px;
+        background: url(../img/logo/logo-small_bakecaincontrii.com.png) no-repeat top left\9; /*IE FIX*/
+        min-width: 178px;
+    }
+}
+
+/*
+END LOGO
+*/
+
+.categoria.categoria-01 h2{
+    background:url(../img/categorie/icon/categ_01.png) no-repeat top left;
+    background-size:38px;
+}
+
+.categoria.categoria-02 h2{
+    background:url(../img/categorie/icon/categ_02.png) no-repeat top left;
+    background-size:38px;
+}
+
+.categoria.categoria-03 h2{
+    background:url(../img/categorie/icon/categ_03.png) no-repeat top left;
+    background-size:38px;
+}
+
+.categoria.categoria-04 h2{
+    background:url(../img/categorie/icon/categ_04.png) no-repeat top left;
+    background-size:38px;
+}
+
+.categoria.categoria-05 h2{
+    background:url(../img/categorie/icon/categ_05.png) no-repeat top left;
+    background-size:38px;
+}
+
+.categoria.categoria-06 h2{
+    background:url(../img/categorie/icon/categ_06.png) no-repeat top left;
+    background-size:38px;
+}
+
+.categoria.categoria-07 h2{
+    background:url(../img/categorie/icon/categ_07.png) no-repeat top left;
+    background-size:38px;
+}
+
+
+
+.debug {
+    font-family: "Courier New", Courier, mono;
+    font-size: x-small;
+    line-height: 2;
+}
+/* BANDIERE PAGINA SKOKKA.COM */
+.skokka .titolo-col.nazione .flag.arg {
+    background-position:0 0;
+}
+.skokka .titolo-col.nazione .flag.bel {
+    background-position:0 -60px;
+}
+.skokka .titolo-col.nazione .flag.bra {
+    background-position:0 -120px;
+}
+.skokka .titolo-col.nazione .flag.esp {
+    background-position:0 -300px;
+}
+.skokka .titolo-col.nazione .flag.ita {
+    background-position:0 -180px;
+}
+.skokka .titolo-col.nazione .flag.mxi {
+    background-position:0 -240px;
+}
+.skokka .titolo-col.nazione .flag.chi {
+    background-position:0 -360px;
+}
+.skokka .titolo-col.nazione .flag.col {
+    background-position:0 -420px;
+}
+.skokka .titolo-col.nazione .flag.per {
+    background-position:0 -480px;
+}
+.skokka .titolo-col.nazione .flag.sgp {
+    background-position:0 -540px;
+}
+.skokka .titolo-col.nazione .flag.aus {
+    background-position:0 -600px;
+}
+.skokka .titolo-col.nazione .flag.cle {
+    background-position:0 -660px;
+}
+.skokka .titolo-col.nazione .flag.vzn {
+    background-position:0 -720px;
+}
+.skokka .titolo-col.nazione .flag.deu {
+    background-position:0 -900px;
+}
+.skokka .titolo-col.nazione .flag.gtm {
+    background-position:0 -1260px;
+}
+.skokka .titolo-col.nazione .flag.pan {
+    background-position:0 -1740px;
+}
+.skokka .titolo-col.nazione .flag.cri {
+    background-position:0 -1080px;
+}
+.skokka .titolo-col.nazione .flag.dom {
+    background-position:0 -1200px;
+}
+.skokka .titolo-col.nazione .flag.ind {
+    background-position:0 -840px;
+}
+.skokka .titolo-col.nazione .flag.uyy {
+    background-position:0 -1140px;
+}
+.skokka .titolo-col.nazione .flag.ecu {
+    background-position:0 -1800px;
+}
+.skokka .titolo-col.nazione .flag.bol {
+    background-position:0 -1980px;
+}
+.skokka .titolo-col.nazione .flag.pyy {
+    background-position:0 -2160px;
+}
+.skokka .titolo-col.nazione .flag.nld {
+    background-position:0 -2280px;
+}
+.skokka .titolo-col.nazione .flag.ukk {
+    background-position:0 -1320px;
+}
+.skokka .titolo-col.nazione .flag.nzl {
+    background-position:0 -2340px;
+}
+.skokka .titolo-col.nazione .flag.irl {
+    background-position:0 -2400px;
+}
+
+
+.grayscale {
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+    /* IE 5-7 */
+    filter: alpha(opacity=10);
+    /* Netscape */
+    -moz-opacity: 0.1;
+    /* Safari 1.x */
+    -khtml-opacity: 0.1;
+    /* Good browsers */
+    opacity: 0.1;
+}
+
+
+/* visto sta sopra il crop*/
+span.selection.true{
+    z-index: 900;
+}
+
+/*lightbox grande per anteprima post*/
+.lb-finestra-anteprima{
+    width: 100%;
+}
+
+.crop-img-container{
+    width: 70%;
+    margin-left: 15%;
+    display: inline-block;
+    margin-top:20px;
+}
+
+@media only screen and (min-width: 769px){
+    .lb-finestra-anteprima {
+        width: 96%;
+    }
+    .crop-img-container{
+        width: 31.5%;
+        display: inline-block;
+        margin-left: 0;
+    }
+}
+
+@media only screen and (min-width: 1024px){
+    .lb-finestra-anteprima {
+        width: 960px;
+    }
+}
+
+/*Nasconde il placeholder al focus sul testo-ins*/
+.form-ins #testo-ins:focus::-webkit-input-placeholder { color:transparent; }
+.form-ins #testo-ins::focus:-moz-placeholder { color:transparent; }
+.form-ins #testo-ins::focus::-moz-placeholder { color:transparent; }
+.form-ins #testo-ins::focus:-ms-input-placeholder { color:transparent; }
+
+.form-ins input[type="text"], .form-ins textarea{
+    box-sizing: border-box;
+    padding-left: 4px !important;
+}
+
+.show1024{
+    display: none;
+}
+
+@media only screen and (min-width: 1024px){
+    .show1024 {
+        display: block;
+    }
+}
+
+
+.upload-img img{
+    display: block;
+    margin: 0 auto;
+}
+
+.jcrop-centered{
+    display: block;
+    margin:0 auto;
+}
+
+.banner-header{
+    float: right;
+    padding: 15px 0 0;
+}
+
+/*QUANDO ï¿½ piccolo ma non ha ancora scrollato*/
+@media only screen and (max-width : 768px) {
+    .banner-header{
+        display: none;
+    }
+}
+/* QUANDO SCROLLA*/
+.header-fixed.to-fix .banner-header{
+    display: none;
+}
+.menu-mobile .social {width: 100%;color:white; border-top: 1px white solid;padding-top:10px; font-size:12px;}
+.menu-mobile .social a{width: 25px;padding: 0;display: inline;}
+.social img{width: 25px;padding: 0 4px 10px;vertical-align: middle;}
+/*QUANDO ï¿½ piccolo ma non ha ancora scrollato*/
+@media only screen and (max-width : 768px){
+    .social img{width: 25px;padding: 10px 4px;}
+}
+
+.titlennd {font-size: 18px;font-weight: bold;padding-bottom: 10px;}
+#ribber p{font-size: 14px;padding-bottom: 5px;}
+
+/* BANDIERE PAGINA riepilogo crediti area privata */
+.be-crediti .ins-box-titolo  .flag{
+    display:block;
+    float:left;
+    height:59px;
+    line-height: 59px;
+    width:53px;
+    background:url(../img/nazioni-small.png) no-repeat 0 0;
+    margin:12px 0 12px 12px;
+//background-size: 53px;
+    padding:0;
+}
+
+
+
+.be-crediti .ins-box-titolo .flag.arg {
+    background-position:0 0;
+}
+.be-crediti .ins-box-titolo .flag.bel {
+    background-position:0 -60px;
+}
+.be-crediti .ins-box-titolo .flag.bra {
+    background-position:0 -120px;
+}
+.be-crediti .ins-box-titolo .flag.esp {
+    background-position:0 -300px;
+}
+.be-crediti .ins-box-titolo .flag.ita {
+    background-position:0 -180px;
+}
+.be-crediti .ins-box-titolo .flag.mxi {
+    background-position:0 -240px;
+}
+.be-crediti .ins-box-titolo .flag.chi {
+    background-position:0 -360px;
+}
+.be-crediti .ins-box-titolo .flag.col {
+    background-position:0 -420px;
+}
+.be-crediti .ins-box-titolo .flag.per {
+    background-position:0 -480px;
+}
+.be-crediti .ins-box-titolo .flag.sgp {
+    background-position:0 -540px;
+}
+.be-crediti .ins-box-titolo .flag.aus {
+    background-position:0 -600px;
+}
+.be-crediti .ins-box-titolo .flag.cle {
+    background-position:0 -660px;
+}
+.be-crediti .ins-box-titolo .flag.vzn {
+    background-position:0 -720px;
+}
+.be-crediti .ins-box-titolo .flag.deu {
+    background-position:0 -900px;
+}
+.be-crediti .ins-box-titolo .flag.gtm {
+    background-position:0 -1260px;
+}
+.be-crediti .ins-box-titolo .flag.pan {
+    background-position:0 -1740px;
+}
+.be-crediti .ins-box-titolo .flag.cri {
+    background-position:0 -1080px;
+}
+.be-crediti .ins-box-titolo .flag.dom {
+    background-position:0 -1200px;
+}
+.be-crediti .ins-box-titolo .flag.ind {
+    background-position:0 -840px;
+}
+.be-crediti .ins-box-titolo .flag.uyy {
+    background-position:0 -1140px;
+}
+.be-crediti .ins-box-titolo .flag.ecu {
+    background-position:0 -1800px;
+}
+.be-crediti .ins-box-titolo .flag.bol {
+    background-position:0 -1980px;
+}
+.be-crediti .ins-box-titolo .flag.pyy {
+    background-position:0 -2160px;
+}
+
+.be-crediti .ins-box-titolo .flag.nld {
+    background-position:0 -2280px;
+}
+.be-crediti .ins-box-titolo .flag.nzl {
+    background-position:0 -2340px;
+}
+.be-crediti .ins-box-titolo .flag.irl {
+    background-position:0 -2400px;
+}
+.be-crediti .ins-box-titolo .flag.ukk {
+    background-position:0 -1320px;
+}
+
+
+/*BUONE FESTE*/
+
+/*.holydays .logo-skokka{*/
+/*!*background: url('../img/holydays/logo.png') no-repeat top left;*!*/
+/*position:relative; !*trick css...*!*/
+/*z-index: 200;*/
+/*}*/
+
+.holydays .open-menu{
+    z-index: 200;
+    position:relative; /*trick css...*/
+}
+.holydays.header-fixed .holydays-div{
+    width:375px;
+    height:102px;
+    background: url('../img/holydays/tipa.png') no-repeat top;
+    position: absolute;
+    top: 45px;
+    z-index: -1;
+}
+
+.holydays.header-fixed.to-fix .holydays-div{
+    height:82px;
+    background-size: contain;
+    top:0;
+}
+
+/*QUANDO è piccolo ma non ha ancora scrollato quindi non ha ancora il to-fix*/
+@media only screen and (max-width : 768px){
+    .holydays.header-fixed .holydays-div{
+        height:82px;
+        background-size: contain;
+        top:0;
+    }
+}
+
+.detail-infos{
+    border:solid 2px #bcbcbc;
+    border-radius: 5px;
+    padding: 10px;
+    display: inline-block;
+    margin-top: 5px;
+    padding-left: 35px;
+}
+.city-description{
+    background:url(../img/icon_map.png) no-repeat;
+    background-size: 20px;
+    background-position: 10px 50%;
+}
+.womenseekmen-description{
+    background:url(../img/icon_cat_detail/womenseekmen.png) no-repeat;
+    background-size: 40px;
+    background-position: 0px 50%;
+    padding-left: 40px;
+}
+.trans-description{
+    background:url(../img/icon_cat_detail/trans.png) no-repeat;
+    background-size: 35px;
+    background-position: 0px 50%;
+}
+.couples-description{
+    background:url(../img/icon_cat_detail/couples.png) no-repeat;
+    background-size: 35px;
+    background-position: 5px 50%;
+    padding-left: 45px;
+}
+.menseekmen-description{
+    background:url(../img/icon_cat_detail/menseekmen.png) no-repeat;
+    background-size: 40px;
+    background-position: 0px 50%;
+    padding-left: 40px;
+}
+.seekfriends-description{
+    background:url(../img/icon_cat_detail/seekfriends.png) no-repeat;
+    background-size: 40px;
+    background-position: 2px 50%;
+    padding-left: 42px;
+}
+.seeksoulmate-description{
+    background:url(../img/icon_cat_detail/seeksoulmate.png) no-repeat;
+    background-size: 37px;
+    background-position: 0px 50%;
+    padding-left: 33px;
+}
+.womenseekwomen-description{
+    background:url(../img/icon_cat_detail/womenseekwomen.png) no-repeat;
+    background-size: 40px;
+    background-position: 0px 50%;
+    padding-left: 40px;
+}
+.menseekwomen-description{
+    background:url(../img/icon_cat_detail/menseekwomen.png) no-repeat;
+    background-size: 40px;
+    background-position: 2px 50%;
+    padding-left: 45px;
+}
+.massages-description{
+    background:url(../img/icon_cat_detail/massages.png) no-repeat;
+    background-size: 38px;
+    background-position: 2px 50%;
+    padding-left: 45px;
+}
+.seekmeetings-description{
+    background:url(../img/icon_cat_detail/seekmeetings.png) no-repeat;
+    background-size: 40px;
+    background-position: 2px 50%;
+    padding-left: 45px;
+}
+
+.post-manage-section-title{
+    padding-bottom: 8px;
+    margin-bottom: 23px;
+    font-size: 15px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.post-manage-menu{
+    width: 100%;
+}
+.premium-first-img{
+    /*width: 210px;*/
+    width: 210px;
+    /*height: 150px;*/
+    /*height: 206px;*/
+    float: left;
+}
+.be-annunci .premium-first-img {
+    width: 150px;
+}
+.on-riskokka .premium-first-img{
+    height: auto;
+    float: left;
+}
+.premium-second-img{
+    width: 155px;
+    margin: 0 0 2px 2px;
+}
+.premium-third-img{
+    width: 155px;
+    margin: 0 0 0 2px;
+}
+.ins.on-riskokka .premium-second-img, .ins.on-riskokka .premium-third-img {
+    width: 74px;
+}
+.be-annunci .premium-second-img, .be-annunci .premium-third-img {
+    width: auto
+}
+.be-annunci .img-pst {
+    width: auto
+}
+.be-annunci .col-premium-ctt-dx {
+    width: calc(100% - 250px);
+}
+.be-annunci .on-riskokka .col-premium-ctt-dx {
+    /*width: calc(100% - 175px);*/
+    width: 86%;
+}
+.ins.on-riskokka .premium-first-img{
+    width:150px;
+}
+.ins.on-riskokka .premium-first-img.fixed{
+    width:11%;
+}
+.ins .premium-first-img{
+    width:150px;
+}
+.ins #premium-second-third{
+    width: 74px;
+    /*margin-top: -1px;*/
+}
+.ins.on-riskokka #premium-second-third{
+    width: 74px;
+    margin-top: 0;
+}
+.premium-second-third{  float: left;width: 104px;}
+#premium-second-third{
+    float: left;
+    width: 104px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+#immagine-anteprima-ctt-premium{width: 100%; display: inline;}
+.img-pst{  float: left;width: 104px;}
+
+.img-ctt-premium {
+    width: 316px;
+    float: left;
+    padding: 0 10px;
+}
+.be-elenco-annunci .img-ctt-premium{
+    float: none !important;
+}
+.img-ctt-premium.be{
+    padding-left: 0;
+}
+
+#mypaysafecard-desc{
+    background: url(../img/paysafecard/logo_paysafecard.png) no-repeat;
+    background-size: 40px;
+    background-position: 2px 50%;
+    padding-left: 55px;
+    margin-top: 20px;
+    margin-left: 32px;
+    font-size: 15px;
+}
+#mypaysafecard-acquista{
+    background: url(../img/paysafecard/step01.png) no-repeat;
+    background-position-x: 50%;
+    background-size: 130px;
+}
+#mypaysafecard-carica{
+    background: url(../img/paysafecard/step02.png) no-repeat;
+    background-position-x: 50%;
+    background-size: 130px;
+}
+#mypaysafecard-paga{
+    background: url(../img/paysafecard/step03.png) no-repeat;
+    background-position-x: 50%;
+    background-size: 130px;
+}
+.mypaysafecard-steps{
+    margin: 79px auto;
+    font-size: 15px;
+    width: 24%;
+    width: calc(32% - 38px);
+    display: inline-block;
+    padding: 109px 19px 10px;
+    text-align: center;
+    float: left;
+}
+
+@media only screen and (max-width: 480px){
+    .mypaysafecard-steps{
+        margin: 35px 0px 0px;
+        width: 100%;
+        float: none;
+        padding: 80px 0px 0px;
+        text-align: center;
+    }
+
+    #mypaysafecard-desc{
+        background-position: 50% 0px;
+        font-size: 15px;
+        padding: 45px 0 0 0;
+        margin: 0px;
+        text-align: center;
+    }
+    #mypaysafecard-acquista{ background-size: 100px;}
+    #mypaysafecard-carica{background-size: 100px;}
+    #mypaysafecard-paga{background-size: 100px;}
+}
+
+
+
+@media only screen and (min-width: 480px){
+    .post-manage-menu{
+        width: 50%;
+    }
+
+}
+
+@media only screen and (max-width: 525px) {
+    .premium-first-img {
+        /*width: 65%!important;*/
+        width: 15%!important;
+        height: auto!important;
+        float: left!important;
+    }
+    .premium-first-img.fixed {
+        /*width: 65%!important;*/
+        width: 20%!important;
+    }
+    .be-annunci .on-riskokka .col-premium-ctt-dx{
+        width: 77% !important;
+    }
+    .ins #premium-second-third{
+    }
+    .col-premium-ctt-dx {
+        /*width: 100%!important;*/
+    }
+    .on-riskokka .premium-first-img {
+        width: 197px;
+        height: auto;
+        float: left;
+    }
+    .img-pst{  float: left;width: 32%;}
+    #premium-second-third{
+        float: left;width: 32%!important;
+        overflow-y: hidden;
+        overflow-x:hidden;
+        margin-top: 0 !important;
+    }
+    .on-riskokka #premium-second-third{
+        width: 100px;
+        /*height: 254px;*/
+        height: auto;
+    }
+    .one-pixel-less {
+        margin-top: -1px;
+    }
+    .premium-second-img {
+        width: 100% !important;
+        height: auto;
+        margin: 0 0 2px 2px;
+    }
+
+    .premium-third-img {
+        width: 100% !important;
+        height: auto;
+        margin: 0 0 0 2px;
+    }
+}
+@media only screen and (max-width: 480px){
+    .img-ctt-premium{
+        width: 100%;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+    }
+    .col-premium-ctt-dx.right.fixed {
+        margin-top: -15px;
+    }
+    .on-riskokka .premium-first-img {
+        width: 15%;
+    }
+    .on-riskokka .premium-first-img.fixed {
+        width: 20%;
+    }
+    .img-pst{  float: left;width: 32%;}
+    .text-280{ width: 100% !important;}
+}
+@media only screen and (max-width: 480px){
+    .text-280{ width: 100% !important;}
+}
+
+.lb-contenitore.confirm-suspend {
+    top:0;
+    left:0;
+}
+
+.lb-contenitore.confirm-message {
+    top:0;
+    left:0;
+}
+.categoria.cat-live-sex h2 {
+    background: url(../img/yonicam/yonicam_icon_X2.png) no-repeat top left;
+    background-size: 25px;
+}

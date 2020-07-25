@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://nz.skokka.com/fe/main.php?page=account_dashboard -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Skokka</title>
+
+    <link href="https://nz.skokka.com/" rel="canonical">
+    <meta name="content-language" content="en">
+    <meta name="language" content="en">
+    <meta name="author" content="Skokka">
+
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="shortcut icon" href="https://nz.skokka.com/fe/img/favicon.ico" type="image/x-icon">
+
+
+    <meta property="og:title" content="Skokka">
+
+    <link rel="stylesheet" href="./index_files/reset.css">
+    <link rel="stylesheet" href="./index_files/style.css">
+    <link rel="stylesheet" href="./index_files/style-additions.css">
+    <script src="./index_files/jquery-1.9.1.min.js.download" type="text/javascript"></script>
+    <script src="./index_files/jquery-ui-1.9.2.min.js.download" type="text/javascript"></script>
+    <script src="./index_files/enscroll-0.6.0.min.js.download" type="text/javascript"></script>
+
+    <script src="./index_files/captcha_manager.js.download" type="text/javascript"></script>
+    <script type="text/javascript">CaptchaManager.loadScript("en");</script>
+    <script src="./index_files/utility.js.download" type="text/javascript"></script>
+    <script src="./index_files/jquery-picture-min.js.download" type="text/javascript"></script>
+    <script src="./index_files/public.js.download" type="text/javascript"></script>
+    </head>
+<body onunload="" class="skokka-lang">
+
+<!-- Google Tag Manager -->
+<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-M5QD88" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+    var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+    j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M5QD88');
+</script>
+<!-- End Google Tag Manager -->
+
+
+<div class="lb-contenitore controllo-eta-container">
+    
+<div class="lb-finestra" id="controllo-eta">
+    <div class="row bg-bianco">
+        <div class="lb-titolo">
+                            <p class="no-bordo">PLEASE READ THE FOLLOWING ADVICE BEFORE CONTINUE</p>
+            
+        </div>
+        <div class="lb-contenuto form-default">			
+            <div class="row">
+				<div class="row desktop">
+					<div class="col unico">
+    <ol>
+        <li><strong>I'm over 18 years.</strong></li>
+        <li><strong>The publication of any ad that contains references about sexual sevices in exchange for money is not allowed.</strong></li>
+        <li><strong>Enclosing pornographic pictures that contains explicit genital organs vision is not allowed.</strong></li>
+        <li><strong>The insertion of paedophile material will be inmediately reported to the competent Authorities, including all the access data, in order to reach the responsible people involucrated.</strong></li>
+        <li>By placing the ad in Skokka, <strong>the User is certifying that he can access to the cointains with full rights</strong>, and is also declaring that the pictures eventually inserted belongs to persons of legal age( over 18) which have given their consent to publish them in Skokka.</li>
+    </ol>
+</div>				</div>
+
+                <p class="row">	Clicking the "Accept" button, the User declares being <b> Over 18 </b> and <b>exempts from responsabilities to the suppliers of this services, owners and creators of skokka.com, on the content and on the use made from the section.</b>.</p>
+				<div class="row mobile">
+					<div class="open-div right-align">Read more</div>
+					<div class="close"><div class="col unico">
+    <ol>
+        <li><strong>I'm over 18 years.</strong></li>
+        <li><strong>The publication of any ad that contains references about sexual sevices in exchange for money is not allowed.</strong></li>
+        <li><strong>Enclosing pornographic pictures that contains explicit genital organs vision is not allowed.</strong></li>
+        <li><strong>The insertion of paedophile material will be inmediately reported to the competent Authorities, including all the access data, in order to reach the responsible people involucrated.</strong></li>
+        <li>By placing the ad in Skokka, <strong>the User is certifying that he can access to the cointains with full rights</strong>, and is also declaring that the pictures eventually inserted belongs to persons of legal age( over 18) which have given their consent to publish them in Skokka.</li>
+    </ol>
+</div></div>
+				</div>
+                <div class="row">
+                    <div class="col unico center-align">
+                                                <input type="submit" name="subprocedi18" id="accetto" onclick="javascript:siaccetto18();" value="Accept" class="bottone ">
+                                            </div>							
+                </div>				
+                <div class="row">
+                    <div class="col unico center-align">
+                        <input type="submit" name="rifiuto" id="rifiuto" onclick="javascript:window.location = &#39;https://nz.skokka.com/&#39;;" value="I renounce" class="bottone grigio">
+                    </div>							
+                </div>
+                            </div>	
+        </div>
+    </div>
+</div></div>
+
+<div class="pg-contenitore">
+    <script language="javascript">
+
+    struct_site = 'NewSkk';
+    districts = {"all-districts":"ALL DISTRICTS"};
+    regions = {"all-regions":[{"code":"auckland","desc":"AUCKLAND","region":null},{"code":"christchurch","desc":"CHRISTCHURCH","region":null},{"code":"dunedin","desc":"DUNEDIN","region":null},{"code":"hamilton","desc":"HAMILTON","region":null},{"code":"nelson","desc":"NELSON","region":null},{"code":"tauranga","desc":"TAURANGA","region":null},{"code":"wellington","desc":"WELLINGTON","region":null}],"":[{"code":"auckland","desc":"AUCKLAND","default":false},{"code":"christchurch","desc":"CHRISTCHURCH","default":false},{"code":"dunedin","desc":"DUNEDIN","default":false},{"code":"hamilton","desc":"HAMILTON","default":false},{"code":"nelson","desc":"NELSON","default":false},{"code":"tauranga","desc":"TAURANGA","default":false},{"code":"wellington","desc":"WELLINGTON","default":false}],"all":"SELECT YOUR CITY","main_cities_of":"Main cities in","all_cities_of":"All the cities in","all_cities":"All the cities in New Zealand"};
+    href_cities={"auckland":"https:\/\/nz.skokka.com\/#CAT#\/auckland\/","":"https:\/\/nz.skokka.com\/#CAT#\/","christchurch":"https:\/\/nz.skokka.com\/#CAT#\/christchurch\/","dunedin":"https:\/\/nz.skokka.com\/#CAT#\/dunedin\/","hamilton":"https:\/\/nz.skokka.com\/#CAT#\/hamilton\/","nelson":"https:\/\/nz.skokka.com\/#CAT#\/nelson\/","tauranga":"https:\/\/nz.skokka.com\/#CAT#\/tauranga\/","wellington":"https:\/\/nz.skokka.com\/#CAT#\/wellington\/","all":"https:\/\/nz.skokka.com\/#CAT#\/"};
+    struct_cities={"auckland":false,"christchurch":false,"dunedin":false,"hamilton":false,"nelson":false,"tauranga":false,"wellington":false};
+    regions_desc=null;
+    list_state = false;
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var navU = navigator.userAgent;
+
+        // Android Mobile
+        var isAndroidMobile = navU.indexOf('Android') > -1 && navU.indexOf('Mozilla/5.0') > -1 && navU.indexOf('AppleWebKit') > -1;
+
+        if (isAndroidMobile) {
+            var elements = document.getElementsByClassName("custom_select");
+            for(var i = 0; i < elements.length; i++)
+            {
+                elements[1].classList.remove("custom_select");
+            }
+        }
+    });
+    clubCities = [];
+    club_regions = {"all":"SELECT YOUR CITY","main_cities_of":"Main cities in","all_cities_of":"All the cities in","all_cities":"All the cities in New Zealand"};
+</script>
+<header>
+    <div class="header-top inline-block-list">
+        <div class="content-header top">
+
+            <ul class="nazioni">
+                <li class="selected">
+                    <span style="cursor: default;">New Zealand</span>
+                </li>
+                <li class="open-div"><a>&gt;</a></li>
+                <li class="menu-nazioni">
+                    <div class="row">
+
+                        
+                        <div class="col ">
+                            <ul>
+                                                                        <li>
+                                            <a href="https://ar.skokka.com/">Argentina</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://au.skokka.com/">Australia</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://bo.skokka.com/">Bolivia</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://br.skokka.com/">Brazil</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://ca.skokka.com/">Canada</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://cl.skokka.com/">Chile</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://co.skokka.com/">Colombia</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://cr.skokka.com/">Costa Rica</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://do.skokka.com/">Dominican Republic</a>
+                                        </li>
+                                                            </ul>
+                        </div>
+                        
+                        <div class="col ">
+                            <ul>
+                                                                        <li>
+                                            <a href="https://ec.skokka.com/">Ecuador</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://de.skokka.com/">Germany</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://gt.skokka.com/">Guatemala</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://nl.skokka.com/">Holland</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://ii.skokka.com/">India</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://ie.skokka.com/">Ireland</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://milano.bakecaincontrii.com/">Italy</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://mx.skokka.com/">Mexico</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://pa.skokka.com/">Panama</a>
+                                        </li>
+                                                            </ul>
+                        </div>
+                        
+                        <div class="col last">
+                            <ul>
+                                                                        <li>
+                                            <a href="https://py.skokka.com/">Paraguay</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://pe.skokka.com/">Peru</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://sp.skokka.com/">Singapore</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://es.skokka.com/">Spain</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://ch.skokka.com/">Switzerland</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://uk.skokka.com/">United Kingdom</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://uy.skokka.com/">Uruguay</a>
+                                        </li>
+                                                                        <li>
+                                            <a href="https://vz.skokka.com/">Venezuela</a>
+                                        </li>
+                                                            </ul>
+                        </div>
+                                            </div>
+                </li>
+            </ul>
+
+            <div class="menu-destra">
+                                                    <p class="messaggi col">
+                        <a href="https://skokka.link/fb-nz" target="_blank">
+                                <img src="./index_files/facebook.png" title="Facebook">
+                            </a><a href="https://skokka.link/tw-nz" target="_blank">
+                                <img src="./index_files/twitter.png" title="Twitter">
+                            </a><a href="https://blog.skokka.net/en/" target="_blank">
+                                <img src="./index_files/blog.png" title="Blog">
+                            </a>                    </p>
+                
+                <ul class="area-riservata">
+                                            <li class="upper">
+                            <a class="lb-open" href="javascript:void(0)" data-lb-ajax="/fe/main.php?page=login_ajax&amp;redirect=%2Ffe%2Fmain.php%3Fpage%3Daccount_dashboard">Login</a>
+                        </li>
+                        <li class="last upper"><a href="https://nz.skokka.com/fe/main.php?page=signup">Sign up</a></li>
+                                    </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="header-fixed">
+                <div class="content-header bottom">
+            
+                        <div class="col">
+                
+
+                <a class="logo-header logo-skokka" href="https://nz.skokka.com/">
+                    New Zealand                </a>
+                            </div>
+            
+            
+                                            
+                                                                                
+                                                                                                                                                        
+            
+            <p class="open-menu open-div"></p>
+
+            <!-- Men� a scomparsa-->
+            <div class="menu-mobile scrollbox" style="height: auto; display: none; right: 311.391px;">
+                
+                
+                <ul class="clear item padding-40">
+                    <li class="nazioni-mobile nazioni-mobile-nzl">
+
+                        <span class="open-div">New Zealand</span>
+
+                        <ul class="menu-nazioni-mobile close">
+                                                                <li>
+                                        <a href="https://ar.skokka.com/">Argentina</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://au.skokka.com/">Australia</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://bo.skokka.com/">Bolivia</a>
+                                    </li>
+                                    <li style="clear:both;">                                                                </li><li>
+                                        <a href="https://br.skokka.com/">Brazil</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://ca.skokka.com/">Canada</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://cl.skokka.com/">Chile</a>
+                                    </li>
+                                    <li style="clear:both;">                                                                </li><li>
+                                        <a href="https://co.skokka.com/">Colombia</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://cr.skokka.com/">Costa Rica</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://do.skokka.com/">Dominican Republic</a>
+                                    </li>
+                                    <li style="clear:both;">                                                                </li><li>
+                                        <a href="https://ec.skokka.com/">Ecuador</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://de.skokka.com/">Germany</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://gt.skokka.com/">Guatemala</a>
+                                    </li>
+                                    <li style="clear:both;">                                                                </li><li>
+                                        <a href="https://nl.skokka.com/">Holland</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://ii.skokka.com/">India</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://ie.skokka.com/">Ireland</a>
+                                    </li>
+                                    <li style="clear:both;">                                                                </li><li>
+                                        <a href="https://milano.bakecaincontrii.com/">Italy</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://mx.skokka.com/">Mexico</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://pa.skokka.com/">Panama</a>
+                                    </li>
+                                    <li style="clear:both;">                                                                </li><li>
+                                        <a href="https://py.skokka.com/">Paraguay</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://pe.skokka.com/">Peru</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://sp.skokka.com/">Singapore</a>
+                                    </li>
+                                    <li style="clear:both;">                                                                </li><li>
+                                        <a href="https://es.skokka.com/">Spain</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://ch.skokka.com/">Switzerland</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://uk.skokka.com/">United Kingdom</a>
+                                    </li>
+                                    <li style="clear:both;">                                                                </li><li>
+                                        <a href="https://uy.skokka.com/">Uruguay</a>
+                                    </li>
+                                                                                                    <li>
+                                        <a href="https://vz.skokka.com/">Venezuela</a>
+                                    </li>
+                                                                                        </ul>
+
+                    </li>
+                    <li class="citta">
+                        <div class="menu-citta close">
+
+                        </div>
+                    </li>
+
+                    
+                        <li class="accedi">
+                            <a class="lb-open" href="javascript:void(0)" data-lb-ajax="/fe/main.php?page=login_ajax&amp;redirect=%2Ffe%2Fmain.php%3Fpage%3Daccount_dashboard">Login</a>
+                        </li>
+                        <li class="registrati"><a href="https://nz.skokka.com/fe/main.php?page=signup">SIGN UP</a></li>
+                                                                <li class="social">
+                            FOLLOW US                            <br><br><a href="https://skokka.link/fb-nz" target="_blank">
+                                <img src="./index_files/facebook.png" title="Facebook">
+                            </a><a href="https://skokka.link/tw-nz" target="_blank">
+                                <img src="./index_files/twitter.png" title="Twitter">
+                            </a><a href="https://blog.skokka.net/en/" target="_blank">
+                                <img src="./index_files/blog.png" title="Blog">
+                            </a>                        </li>
+                                    </ul>
+            </div>
+        </div>
+    </div>
+
+                
+        
+            
+    
+            
+                                
+
+
+    <!-- search bar superiore -->
+    
+    </header>
+
+    <div id="content">
+        <div id="colonna-unica" class="col unico bg-bianco">
+            <div class="content-principale ">
+                <div class="col unico" id="colonna-unica">
+    <script type="text/javascript">
+        function validateLoginForm(form, e){
+            $(form).find('input[type=submit]').attr('disabled', 'disabled');
+            return true;
+        }
+    </script>
+    <div class="content-principale bg-bianco form-default lb-contenuto">
+        <h2 class="titolo upper row scopri punti">Login</h2>
+        <form method="post" action="login.php" onsubmit="return validateLoginForm(this, event);">
+            <div class="row">
+                <div class="col w-50 pad">
+                    <label id="email-accedi-label" for="email-accedi" class="label">E-mail</label>
+                    <input type="text" name="email-accedi" id="email-accedi" placeholder="Introduce your e-mail address.">
+                </div>
+                <div class="col w-50 pad p-left">
+                    <label for="email-accedi-conferma" class="label">Password</label>
+                    <input type="password" name="password-accedi" id="password-accedi" value="">
+                    <br>
+                    <a href="javascript:void(0);" onclick="utility.lightboxShowAjax(&#39;/fe/main.php?page=password_recover_ajax&#39;)" title="Forgot your password?">Forgot your password?</a>
+                </div>
+            </div>
+
+            <div class="row">
+                        <div id="errore-accedi" class="row">
+                                                         <p class="text-error">
+                         Please Login For Update                    </p>
+                                                </div>
+            
+            
+                        
+            <div class="row">
+                <div class="col unico center-align">
+                    <input type="submit" name="accedi" id="accedi" value="Login" class="bottone">
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col unico">
+                <h3 class="divisore">Not signed in yet?</h3>
+                <p>Signing in you can:<br> - Manage your ads easily <br> - Publish without waiting for the e-mail notification</p>
+            </div>
+            <div class="row">
+                <div class="col unico center-align">
+                                            <a href="https://nz.skokka.com/fe/main.php?page=signup" id="registrati" class="bottone grigio">Sign up</a>
+                                    </div>
+            </div>
+        </div>
+
+
+        <div class="clear"></div>
+    </div>
+</div>
+                
+            </div>
+        </div>
+    </div>
+    
+<footer>
+    <div class="content-footer">
+        <div class="bg-footer">
+            <p class="torna-su"><a>TOP</a></p>
+            <div class="footer-menu">
+                <ul class="footer-link col inline-block-list">
+
+                    <li class="first">
+                        <a rel="nofollow" href="https://nz.skokka.com/terms-and-conditions/">
+                            Terms and conditions                        </a>
+                    </li>
+                    <li>
+                        <a rel="nofollow" href="https://nz.skokka.com/privacy-policy/">Privacy policy</a>
+                    </li>
+                                        <li>
+                        <a rel="nofollow" href="https://nz.skokka.com/contact-us/">Contact us</a>
+                    </li>
+
+                    <li>
+                        <a rel="nofollow" href="https://nz.skokka.com/u/manage-your-ads/">Manage your ads</a>
+                    </li>
+                                                                            <li>
+                                    <a href="https://help.skokka.com/en/" target="_blank"><img src="./index_files/help_icon_footer.png" style="width: 57px;top: -5px;position: relative;"></a>
+                                </li>
+                                            
+                                                                                                                        <li>
+                                    <a class="skokka_network" rel="nofollow" href="https://www.skokka.com/">Skokka Network</a>
+                                </li>
+                                                                </ul>
+
+<!--                <ul class="footer-link col inline-block-list payment-methods">-->
+<!---->
+<!--                    --><!--                    <li>-->
+<!--                        <img src="--><!--/fe/img/logo_dimoco_small.png" />-->
+<!--                    </li>-->
+<!--                    --><!--                    <li>-->
+<!--                        <img src="--><!--/fe/img/paysite_icon_small.png" />-->
+<!--                    </li>-->
+<!--                    --><!--                    <li>-->
+<!--                        <img src="--><!--/fe/img/paysite_icon_small.png" />-->
+<!--                    </li>-->
+<!--                    --><!---->
+<!--                    --><!--                    <li>-->
+<!--                        <img src="--><!--/fe/img/paysafecard_icon_small.png"  />-->
+<!--                    </li>-->
+<!--                    --><!---->
+<!--                    --><!--                    <li>-->
+<!--                        <img src="--><!--/fe/img/moip_icon_small.png" />-->
+<!--                    </li>-->
+<!--                    --><!---->
+<!--                    --><!--                    <li>-->
+<!--                        <img src="--><!--/fe/img/bitcoin_icon_small.png" />-->
+<!--                    </li>-->
+<!--                    --><!---->
+<!--                    --><!--                        <li>-->
+<!--                            <img src="--><!--/fe/img/coingate_icon_small.png" />-->
+<!--                        </li>-->
+<!--                    --><!---->
+<!--                </ul>-->
+
+
+                <p class="credits col">Powered by <span></span></p>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</footer>
+    </div>
+
+		
+
+        
+
+<div style="background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px; position: absolute; transition: visibility 0s linear 0.3s, opacity 0.3s linear 0s; opacity: 0; visibility: hidden; z-index: 2000000000; left: 0px; top: -10000px;"><div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: rgb(255, 255, 255); opacity: 0.05;"></div><div class="g-recaptcha-bubble-arrow" style="border: 11px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -11px; z-index: 2000000000;"></div><div class="g-recaptcha-bubble-arrow" style="border: 10px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -10px; z-index: 2000000000;"></div><div style="z-index: 2000000000; position: relative;"><iframe title="recaptcha challenge" src="./index_files/bframe.html" name="c-houj73ebyvri" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox" style="width: 100%; height: 100%;"></iframe></div></div></body></html>
